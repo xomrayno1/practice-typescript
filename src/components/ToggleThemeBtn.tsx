@@ -20,7 +20,12 @@ const ToggleThemeBtn = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <Fab color="primary" variant="extended" className={classes.floatBtn} onClick={toggleTheme.bind(this, theme === 'primary' ? 'secondary' : 'primary')}>
+    <Fab
+      color="primary"
+      variant="extended"
+      className={classes.floatBtn}
+      onClick={toggleTheme.bind(this, theme === 'primary' ? 'secondary' : 'primary')}
+    >
       Toggle Theme
     </Fab>
   );

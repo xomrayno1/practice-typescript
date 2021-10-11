@@ -3,11 +3,11 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 
 interface LoginProps {
-  isOpen: boolean, 
-  handleClose: React.Dispatch<React.SetStateAction<boolean>>
+  isOpen: boolean;
+  handleClose: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Login = ({isOpen, handleClose}: LoginProps) => {
+const Login = ({ isOpen, handleClose }: LoginProps) => {
   //state
   const [username, setUsername] = useState('');
 
@@ -16,22 +16,34 @@ const Login = ({isOpen, handleClose}: LoginProps) => {
 
   const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
-  }
+  };
 
   const onLoginSubmit = () => {
     toggleAuth(username);
-    setUsername('')
-    handleClose(false)
+    setUsername('');
+    handleClose(false);
   };
 
   return (
     <>
       <Dialog open={isOpen} onClose={() => handleClose(!isOpen)}>
         <DialogContent>
-          <TextField label="username" onChange={onUsernameChange} value={username} required></TextField>
+          <TextField
+            label="username"
+            onChange={onUsernameChange}
+            value={username}
+            required
+          ></TextField>
         </DialogContent>
         <DialogActions>
-          <Button color="primary" variant="contained" onClick={onLoginSubmit} disabled={username === ''}>Login</Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={onLoginSubmit}
+            disabled={username === ''}
+          >
+            Login
+          </Button>
         </DialogActions>
       </Dialog>
     </>

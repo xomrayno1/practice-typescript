@@ -1,22 +1,22 @@
 import axios from 'axios';
 import React, { ReactNode, useReducer } from 'react';
 import { createContext } from 'react';
-import { TopMovie, topMovieReducer, TopMovieState } from '../reducers/TopMovieReducer';
+import topMovieReducer, { TopMovie, TopMovieState } from '../reducers/TopMovieReducer';
 import { TopMovieActionType } from '../reducers/types';
 import topMovieInfo from '../api/getTopMovies';
 
-const topMovieDefault: TopMovieState = [];
+const topMovieDefault: TopMovieState = [] ;
 
 interface TopMovieContextDefault {
   topMovies: TopMovie[];
   getTopMovies: () => Promise<void>;
-  // toggleWatched: (imbdID: string) => void;
+  toggleWatched: (imbdID: string) => void;
 }
 
 export const TopMovieContext = createContext<TopMovieContextDefault>({
   topMovies: topMovieDefault,
   getTopMovies: () => Promise.resolve(void 0),
-  // toggleWatched: (imbdID: string) => {},
+  toggleWatched: (imbdID: string) => {},
 });
 
 interface TopMovieContextProps {
@@ -35,13 +35,13 @@ const TopMovieContextProvider = ({ children }: TopMovieContextProps) => {
   };
 
   //toggle watched
-  // const toggleWatched = (imbdID: string) =>
-  //   dispatch({ type: TopMovieActionType.TOGGLE_TOP_MOVIE_WATCHED, payload: imbdID });
+  const toggleWatched = (imbdID: string) =>
+    dispatch({ type: TopMovieActionType.TOGGLE_TOP_MOVIE_WATCHED, payload: imbdID });
 
   const topMovieContextData = {
     topMovies,
     getTopMovies,
-    // toggleWatched,
+    toggleWatched,
   };
 
   return (
